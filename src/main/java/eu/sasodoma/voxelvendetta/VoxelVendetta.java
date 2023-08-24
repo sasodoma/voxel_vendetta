@@ -13,13 +13,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public class VoxelVendetta extends JavaPlugin implements Listener {
+    private String hubWorldName = "hub";
+    private String lobbyWorldName = "lobby";
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        loadConfig();
         Bukkit.getPluginManager().registerEvents(this, this);
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        this.getCommand("listworlds").setExecutor(new CommandListworlds());
-        getServer().createWorld(new WorldCreator("blur_lobby"));
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(hubWorldName), this);
+        Objects.requireNonNull(this.getCommand("listworlds")).setExecutor(new CommandListworlds());
+        // Load the lobby world so it's ready
+        getServer().createWorld(new WorldCreator(lobbyWorldName));
     }
 
     @EventHandler
@@ -34,13 +41,22 @@ public class VoxelVendetta extends JavaPlugin implements Listener {
 
                     getServer().sendMessage(hitMessage);
                     String playerWorld = victim.getWorld().getName();
-                    if (playerWorld.equals("blur_hub")) {
-                        victim.teleport(Bukkit.getWorld("blur_lobby").getSpawnLocation());
+                    if (playerWorld.equals(hubWorldName)) {
+                        victim.teleport(Objects.requireNonNull(Bukkit.getWorld(lobbyWorldName)).getSpawnLocation());
                     } else {
-                        victim.teleport(Bukkit.getWorld("blur_hub").getSpawnLocation());
+                        victim.teleport(Objects.requireNonNull(Bukkit.getWorld(hubWorldName)).getSpawnLocation());
                     }
                 }
             }
         }
+    }
+
+    private void loadConfig() {
+        String hubWorldNameConfig = getConfig().getString("worlds.hub");
+        assert hubWorldNameConfig != null;
+        hubWorldName = hubWorldNameConfig;
+        String lobbyWorldNameConfig = getConfig().getString("worlds.lobby");
+        assert lobbyWorldNameConfig != null;
+        lobbyWorldName = lobbyWorldNameConfig;
     }
 }
