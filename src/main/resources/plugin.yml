@@ -1,0 +1,23 @@
+name: VoxelVendetta
+version: 1.0.0
+main: eu.sasodoma.voxelvendetta.VoxelVendetta
+description: A paintball plugin, maybe some day
+author: sasodoma
+website: https://github.com/sasodoma/
+api-version: 1.20
+
+permissions :
+  voxelvendetta.op:
+    description: "VoxelVendetta op commands"
+    default: op
+  voxelvendetta.nop:
+    description: "VoxelVendetta non-op commands"
+    default: not op
+
+commands:
+  command:
+    description: "Lists worlds present on server"
+    usage: "/listworlds"
+    aliases: [listworlds]
+    permission: voxelvendetta.op
+    permission-message: "You do not have permission to use this command"
