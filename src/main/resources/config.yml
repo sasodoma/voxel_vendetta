@@ -1,3 +1,32 @@
 worlds:
-  hub: blur_hub
-  lobby: blur_lobby
+  hub: hub
+  lobby: lobby
+  maps:
+    shyre:
+      spawn:
+        x: 0
+        y: 57
+        z: 0
+        rot: 90
+      blue:
+        spawn:
+          x: -34
+          y: 65
+          z: -23
+          rot: -90
+        flag:
+          x: -53
+          y: 65
+          z: 18
+          rot: 12
+      red:
+        spawn:
+          x: 34
+          y: 65
+          z: 23
+          rot: 90
+        flag:
+          x: 53
+          y: 65
+          z: -18
+          rot: 4

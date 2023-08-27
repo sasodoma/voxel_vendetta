@@ -16,8 +16,8 @@ permissions :
 
 commands:
   command:
-    description: "Lists worlds present on server"
-    usage: "/listworlds"
-    aliases: [listworlds]
+    description: "VoxelVendetta"
+    usage: "/vv [command]"
+    aliases: [vv]
     permission: voxelvendetta.op
     permission-message: "You do not have permission to use this command"
