@@ -2,7 +2,6 @@ package eu.sasodoma.voxelvendetta.lobby;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class LobbyTask extends BukkitRunnable {
@@ -35,7 +34,7 @@ public class LobbyTask extends BukkitRunnable {
                     );
                 }
                 countdown--;
-                if (countdown < 30) lobby.setLobbyState(LobbyState.FAST_COUNTDOWN);
+                if (countdown < 10) lobby.setLobbyState(LobbyState.FAST_COUNTDOWN);
             }
             case FAST_COUNTDOWN -> {
                 if (lobby.getLobbyWorld().getPlayerCount() < 2) {
@@ -55,12 +54,12 @@ public class LobbyTask extends BukkitRunnable {
                 if (countdown == 0) {
                     countdown = 120;
                     lobby.setLobbyState(LobbyState.IN_GAME);
+                    lobby.startGame();
                 }
             }
             case IN_GAME -> {
                 if (lobby.getLobbyWorld().getPlayerCount() == 0) {
                     lobby.setLobbyState(LobbyState.IDLE);
-                    break;
                 }
             }
         }

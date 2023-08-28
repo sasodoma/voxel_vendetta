@@ -2,7 +2,7 @@ worlds:
   hub: hub
   lobby: lobby
   maps:
-    shyre:
+    sample:
       spawn:
         x: 0
         y: 57

@@ -1,5 +1,6 @@
 package eu.sasodoma.voxelvendetta.game;
 
+import eu.sasodoma.voxelvendetta.VoxelVendetta;
 import org.bukkit.Location;
 import org.bukkit.WorldCreator;
 import org.bukkit.configuration.ConfigurationSection;
@@ -8,10 +9,10 @@ import org.bukkit.plugin.Plugin;
 import java.util.Set;
 
 public class GameWorldManager {
-    private final Plugin VVPlugin;
+    private final VoxelVendetta VVPlugin;
     private final ConfigurationSection maps_section;
     private final Set<String> maps;
-    public GameWorldManager(Plugin plugin) {
+    public GameWorldManager(VoxelVendetta plugin) {
         VVPlugin = plugin;
         maps_section = VVPlugin.getConfig().getConfigurationSection("worlds.maps");
         assert maps_section != null;

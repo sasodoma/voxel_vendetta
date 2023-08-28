@@ -12,10 +12,10 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandVV implements CommandExecutor {
-    private final Plugin VVPlugin;
+    private final VoxelVendetta VVPlugin;
     private final GameWorldManager gameWorldManager;
 
-    public CommandVV(Plugin VVPlugin, GameWorldManager gameWorldManager) {
+    public CommandVV(VoxelVendetta VVPlugin, GameWorldManager gameWorldManager) {
         this.VVPlugin = VVPlugin;
         this.gameWorldManager = gameWorldManager;
     }
