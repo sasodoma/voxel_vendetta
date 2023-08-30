@@ -30,7 +30,7 @@ public class Lobby {
     public void loadLobby(String lobbyWorldName) {
         lobbyWorld = VVPlugin.getServer().createWorld(new WorldCreator(lobbyWorldName));
         lobbyTask = new LobbyTask(this);
-        lobbyTask.runTaskTimer(VVPlugin, 0, 20);
+            lobbyTask.runTaskTimer(VVPlugin, 0, 20);
     }
 
     public void startGame() {

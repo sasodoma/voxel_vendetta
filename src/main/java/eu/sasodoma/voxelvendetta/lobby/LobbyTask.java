@@ -6,7 +6,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class LobbyTask extends BukkitRunnable {
     private final Lobby lobby;
-    private Integer countdown = 120;
+    private static final int MIN_PLAYERS = 1;
+    private static final int COUNTDOWN_TIME = 30;
+    private Integer countdown = COUNTDOWN_TIME;
     public LobbyTask(Lobby lobby)  {
         this.lobby = lobby;
     }
@@ -14,17 +16,13 @@ public class LobbyTask extends BukkitRunnable {
     public void run() {
         switch (lobby.getLobbyState()) {
             case IDLE -> {
-                if (lobby.getLobbyWorld().getPlayerCount() > 1) {
+                if (lobby.getLobbyWorld().getPlayerCount() >= MIN_PLAYERS) {
                     lobby.setLobbyState(LobbyState.SLOW_COUNTDOWN);
                 }
             }
             case SLOW_COUNTDOWN -> {
-                if (lobby.getLobbyWorld().getPlayerCount() < 2) {
-                    lobby.getLobbyWorld().sendMessage(
-                            Component.text("Game countdown cancelled. Not enough players")
-                    );
-                    countdown = 120;
-                    lobby.setLobbyState(LobbyState.IDLE);
+                if (lobby.getLobbyWorld().getPlayerCount() < MIN_PLAYERS) {
+                    cancelCountdown();
                     break;
                 }
                 if (countdown % 30 == 0) {
@@ -37,13 +35,8 @@ public class LobbyTask extends BukkitRunnable {
                 if (countdown < 10) lobby.setLobbyState(LobbyState.FAST_COUNTDOWN);
             }
             case FAST_COUNTDOWN -> {
-                if (lobby.getLobbyWorld().getPlayerCount() < 2) {
-                    lobby.getLobbyWorld().sendMessage(
-                            Component.text("Game countdown cancelled. Not enough players")
-                                    .color(TextColor.color(0xDD2222))
-                    );
-                    countdown = 120;
-                    lobby.setLobbyState(LobbyState.IDLE);
+                if (lobby.getLobbyWorld().getPlayerCount() < MIN_PLAYERS) {
+                    cancelCountdown();
                     break;
                 }
                 lobby.getLobbyWorld().sendMessage(Component.text("Game starting in ")
@@ -52,7 +45,7 @@ public class LobbyTask extends BukkitRunnable {
                 );
                 countdown--;
                 if (countdown == 0) {
-                    countdown = 120;
+                    countdown = COUNTDOWN_TIME;
                     lobby.setLobbyState(LobbyState.IN_GAME);
                     lobby.startGame();
                 }
@@ -63,5 +56,14 @@ public class LobbyTask extends BukkitRunnable {
                 }
             }
         }
+    }
+
+    private void cancelCountdown() {
+        lobby.getLobbyWorld().sendMessage(
+                Component.text("Game countdown cancelled. Not enough players")
+                        .color(TextColor.color(0xDD2222))
+        );
+        countdown = COUNTDOWN_TIME;
+        lobby.setLobbyState(LobbyState.IDLE);
     }
 }
