@@ -2,16 +2,13 @@ package eu.sasodoma.voxelvendetta.game.task;
 
 import eu.sasodoma.voxelvendetta.game.Game;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class RespawnTask extends BukkitRunnable {
     private final Game game;
     private final Player player;
-    private Integer countdown = 5;
+    private Integer countdown;
     public RespawnTask(Game game, Player player, Integer delay) {
         this.game = game;
         this.player = player;

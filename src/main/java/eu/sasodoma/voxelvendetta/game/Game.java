@@ -1,6 +1,7 @@
 package eu.sasodoma.voxelvendetta.game;
 
 import eu.sasodoma.voxelvendetta.VoxelVendetta;
+import eu.sasodoma.voxelvendetta.game.listener.PlayerDamageListener;
 import eu.sasodoma.voxelvendetta.game.listener.ReloadListener;
 import eu.sasodoma.voxelvendetta.game.listener.SnowballHitListener;
 import eu.sasodoma.voxelvendetta.game.task.RespawnTask;
@@ -23,6 +24,7 @@ public abstract class Game {
     protected final List<Player> respawningPlayers = new ArrayList<>();
     private final SnowballHitListener snowballHitListener = new SnowballHitListener(this);
     private final ReloadListener reloadListener = new ReloadListener(this);
+    private final PlayerDamageListener playerDamageListener = new PlayerDamageListener(this);
 
     public Game(VoxelVendetta VVPlugin, GameWorld gameWorld) {
         this.VVPlugin = VVPlugin;
@@ -32,6 +34,7 @@ public abstract class Game {
     public void startGame(List<Player> players) {
         Bukkit.getPluginManager().registerEvents(snowballHitListener, VVPlugin);
         Bukkit.getPluginManager().registerEvents(reloadListener, VVPlugin);
+        Bukkit.getPluginManager().registerEvents(playerDamageListener, VVPlugin);
 
         players.forEach(this::killPlayer);
 
@@ -42,16 +45,12 @@ public abstract class Game {
             red = !red;
         }
 
-        redPlayers.forEach(player -> {
-            gameWorld.getWorld().sendMessage(
-                Component.text(player.getName()).color(TextColor.color(0xdd2222))
-            );
-        });
-        bluePlayers.forEach(player -> {
-            gameWorld.getWorld().sendMessage(
-                    Component.text(player.getName()).color(TextColor.color(0x2222dd))
-            );
-        });
+        redPlayers.forEach(player -> gameWorld.getWorld().sendMessage(
+            Component.text(player.getName()).color(TextColor.color(0xdd2222))
+        ));
+        bluePlayers.forEach(player -> gameWorld.getWorld().sendMessage(
+                Component.text(player.getName()).color(TextColor.color(0x2222dd))
+        ));
     }
 
     public GameWorld getGameWorld() { return gameWorld; }
