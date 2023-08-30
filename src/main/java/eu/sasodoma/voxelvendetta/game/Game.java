@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Game {
+public abstract class Game {
     private final VoxelVendetta VVPlugin;
     protected final GameWorld gameWorld;
     protected final List<Player> redPlayers = new ArrayList<Player>();
