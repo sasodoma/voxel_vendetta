@@ -34,15 +34,10 @@ public class VoxelVendetta extends JavaPlugin implements Listener {
         lobbyWorldName = lobbyWorldNameConfig;
     }
 
-    public Game getGame() {
-        return game;
-    }
+    public Game getGame() { return game; }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
+    public void setGame(Game game) { this.game = game; }
 
-    public GameWorldManager getGameWorldManager() {
-        return gameWorldManager;
-    }
+    public GameWorldManager getGameWorldManager() { return gameWorldManager; }
+    public Lobby getLobby() { return lobby; }
 }

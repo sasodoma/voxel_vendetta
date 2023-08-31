@@ -1,7 +1,7 @@
 package eu.sasodoma.voxelvendetta.lobby;
 
 import eu.sasodoma.voxelvendetta.VoxelVendetta;
-import eu.sasodoma.voxelvendetta.game.GameCTF;
+import eu.sasodoma.voxelvendetta.game.GameTeamDeathMatch;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
@@ -33,7 +33,7 @@ public class Lobby {
     }
 
     public void startGame() {
-        VVPlugin.setGame(new GameCTF(VVPlugin, VVPlugin.getGameWorldManager().getWorld("sakura")));
+        VVPlugin.setGame(new GameTeamDeathMatch(VVPlugin, VVPlugin.getGameWorldManager().getWorld("sakura")));
         VVPlugin.getGame().startGame(lobbyWorld.getPlayers());
     }
 }

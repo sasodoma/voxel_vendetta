@@ -27,7 +27,7 @@ public class SnowballHitListener implements Listener {
                 .append(Component.text(" was shot by "))
                 .append(Component.text(shooter.getName()).color(TextColor.color(game.isRed(shooter) ? 0xDD555B : 0x4A73DD)));
         game.getGameWorld().getWorld().sendMessage(hitMessage);
-        game.killPlayer(victim);
+        game.registerKill(victim, shooter);
 
     }
 }
