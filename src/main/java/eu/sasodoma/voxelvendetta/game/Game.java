@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
@@ -74,6 +75,9 @@ public abstract class Game {
         HandlerList.unregisterAll(snowballHitListener);
         HandlerList.unregisterAll(reloadListener);
         HandlerList.unregisterAll(playerDamageListener);
+
+        scoreboard.clearSlot(DisplaySlot.SIDEBAR);
+
         gameWorld.getWorld().getPlayers().forEach(
                 player -> player.teleport(VVPlugin.getLobby().getLobbyWorld().getSpawnLocation())
         );
