@@ -1,6 +1,5 @@
 package eu.sasodoma.voxelvendetta.commands;
 
-import eu.sasodoma.voxelvendetta.VoxelVendetta;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
