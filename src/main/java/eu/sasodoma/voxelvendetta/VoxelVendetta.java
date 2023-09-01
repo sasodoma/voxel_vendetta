@@ -2,15 +2,15 @@ package eu.sasodoma.voxelvendetta;
 
 import eu.sasodoma.voxelvendetta.game.Game;
 import eu.sasodoma.voxelvendetta.game.GameWorldManager;
+import eu.sasodoma.voxelvendetta.listener.LobbyCompassListener;
 import eu.sasodoma.voxelvendetta.listener.PlayerJoinListener;
 import eu.sasodoma.voxelvendetta.lobby.Lobby;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public class VoxelVendetta extends JavaPlugin implements Listener {
+public class VoxelVendetta extends JavaPlugin {
     private final GameWorldManager gameWorldManager = new GameWorldManager(this);
     private String hubWorldName = "hub";
     private String lobbyWorldName = "lobby";
@@ -21,6 +21,7 @@ public class VoxelVendetta extends JavaPlugin implements Listener {
         saveDefaultConfig();
         loadConfig();
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(hubWorldName), this);
+        Bukkit.getPluginManager().registerEvents(new LobbyCompassListener(hubWorldName, lobbyWorldName), this);
         Objects.requireNonNull(this.getCommand("vv")).setExecutor(new CommandVV(this, gameWorldManager));
         lobby.loadLobby(lobbyWorldName);
     }
