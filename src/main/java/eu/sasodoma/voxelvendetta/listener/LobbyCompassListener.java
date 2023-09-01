@@ -26,5 +26,6 @@ public class LobbyCompassListener implements Listener {
         if (item.getType() != Material.COMPASS) return;
         if (!player.getWorld().getName().equals(hubWorldName)) return;
         player.teleport(Objects.requireNonNull(Bukkit.getWorld(lobbyWorldName)).getSpawnLocation());
+        player.getInventory().clear();
     }
 }
