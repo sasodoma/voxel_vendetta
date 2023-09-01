@@ -25,7 +25,7 @@ public abstract class Game {
     protected final Scoreboard scoreboard;
     protected final Team redTeam;
     protected final Team blueTeam;
-    protected final List<Player> respawningPlayers = new ArrayList<>();
+    protected final ArrayList<Player> respawningPlayers = new ArrayList<>();
     private final SnowballHitListener snowballHitListener = new SnowballHitListener(this);
     private final ReloadListener reloadListener = new ReloadListener(this);
     private final PlayerDamageListener playerDamageListener = new PlayerDamageListener(this);
@@ -100,5 +100,6 @@ public abstract class Game {
         if (isRed(player)) player.teleport(gameWorld.getRedSpawn());
         if (isBlue(player)) player.teleport(gameWorld.getBlueSpawn());
         respawningPlayers.remove(player);
+        snowballHitListener.makeInvulnerable(player, 40);
     }
 }
