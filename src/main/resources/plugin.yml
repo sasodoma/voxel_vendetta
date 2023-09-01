@@ -15,9 +15,15 @@ permissions :
     default: not op
 
 commands:
-  command:
+  vv:
     description: "VoxelVendetta"
     usage: "/vv [command]"
     aliases: [vv]
     permission: voxelvendetta.op
+    permission-message: "You do not have permission to use this command"
+  hub:
+    description: "Teleports player to hub"
+    usage: "/hub"
+    aliases: [hub]
+    permission: voxelvendetta.nop
     permission-message: "You do not have permission to use this command"

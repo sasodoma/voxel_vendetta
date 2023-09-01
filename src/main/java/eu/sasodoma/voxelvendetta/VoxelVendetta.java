@@ -1,5 +1,7 @@
 package eu.sasodoma.voxelvendetta;
 
+import eu.sasodoma.voxelvendetta.commands.CommandHub;
+import eu.sasodoma.voxelvendetta.commands.CommandVV;
 import eu.sasodoma.voxelvendetta.game.Game;
 import eu.sasodoma.voxelvendetta.game.GameWorldManager;
 import eu.sasodoma.voxelvendetta.listener.LobbyCompassListener;
@@ -23,6 +25,7 @@ public class VoxelVendetta extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(hubWorldName), this);
         Bukkit.getPluginManager().registerEvents(new LobbyCompassListener(hubWorldName, lobbyWorldName), this);
         Objects.requireNonNull(this.getCommand("vv")).setExecutor(new CommandVV(this, gameWorldManager));
+        Objects.requireNonNull(this.getCommand("hub")).setExecutor(new CommandHub(hubWorldName));
         lobby.loadLobby(lobbyWorldName);
     }
 
