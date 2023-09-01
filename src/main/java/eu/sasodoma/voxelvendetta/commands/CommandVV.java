@@ -1,5 +1,6 @@
-package eu.sasodoma.voxelvendetta;
+package eu.sasodoma.voxelvendetta.commands;
 
+import eu.sasodoma.voxelvendetta.VoxelVendetta;
 import eu.sasodoma.voxelvendetta.game.GameWorld;
 import eu.sasodoma.voxelvendetta.game.GameWorldManager;
 import net.kyori.adventure.text.Component;
@@ -20,7 +21,7 @@ public class CommandVV implements CommandExecutor {
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        Player player = (Player) sender;
+        if (!(sender instanceof Player player)) return true;
         if (args.length == 0) {
             player.sendMessage(Component.text("Possible commands:\ntp <world>\njoin"));
             return true;
