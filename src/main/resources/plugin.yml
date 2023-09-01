@@ -12,7 +12,7 @@ permissions :
     default: op
   voxelvendetta.nop:
     description: "VoxelVendetta non-op commands"
-    default: not op
+    default: true
 
 commands:
   vv:
