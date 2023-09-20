@@ -2,6 +2,7 @@ package eu.sasodoma.voxelvendetta.listener;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,6 +33,7 @@ public class PlayerJoinListener implements Listener {
         if (player.getWorld().getName().equals(hubWorldName)) {
             giveLobbyCompass(player);
         }
+        player.setGameMode(GameMode.ADVENTURE);
         player.teleport(Objects.requireNonNull(Bukkit.getWorld(hubWorldName)).getSpawnLocation());
     }
 
