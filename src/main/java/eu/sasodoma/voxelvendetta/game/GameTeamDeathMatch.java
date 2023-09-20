@@ -37,14 +37,14 @@ public class GameTeamDeathMatch extends Game {
 
     @Override
     public void registerKill(Player victim, Player killer) {
-        if (isRed(killer)) {
+        if (isBlue(victim)) {
             redScore.setScore(redScore.getScore() + 1);
             if (redScore.getScore() == 10) {
                 gameWorld.getWorld().sendMessage(Component.text("RED team wins!").color(TextColor.color(0xDD2222)));
                 endGame();
                 return;
             }
-        } else {
+        } else if (isRed(victim)) {
             blueScore.setScore(blueScore.getScore() + 1);
             if (blueScore.getScore() == 10) {
                 gameWorld.getWorld().sendMessage(Component.text("BLUE team wins!").color(TextColor.color(0x2222DD)));
