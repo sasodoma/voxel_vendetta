@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
@@ -43,11 +44,13 @@ public class PlayerJoinListener implements Listener {
     }
 
     private void giveLobbyCompass(Player player) {
-        player.getInventory().clear();
+        PlayerInventory inventory = player.getInventory();
+        inventory.clear();
         ItemStack lobbyCompass = new ItemStack(Material.COMPASS);
         ItemMeta lobbyCompassMeta = lobbyCompass.getItemMeta();
         lobbyCompassMeta.displayName(Component.text("Join lobby"));
         lobbyCompass.setItemMeta(lobbyCompassMeta);
-        player.getInventory().setItem(4, lobbyCompass);
+        inventory.setItem(4, lobbyCompass);
+        inventory.setHeldItemSlot(4);
     }
 }
