@@ -50,6 +50,8 @@ public abstract class Game {
 
         players.forEach(player -> {
             player.setScoreboard(scoreboard);
+            player.setHealth(20);
+            player.setFoodLevel(20);
             killPlayer(player);
             (new RespawnTask(this, player, 5)).runTaskTimer(VVPlugin, 0, 20);
         });
