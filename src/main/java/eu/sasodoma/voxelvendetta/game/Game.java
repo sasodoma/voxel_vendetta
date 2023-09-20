@@ -103,6 +103,7 @@ public abstract class Game {
 
     public void respawnPlayer(Player player) {
         player.getInventory().setItem(0, new ItemStack(Material.SNOWBALL, 64));
+        player.getInventory().setHeldItemSlot(0);
         if (isRed(player)) player.teleport(gameWorld.getRedSpawn());
         if (isBlue(player)) player.teleport(gameWorld.getBlueSpawn());
         respawningPlayers.remove(player);
